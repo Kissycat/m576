@@ -1457,7 +1457,7 @@ functions_store(struct device *pdev, struct device_attribute *attr,
 #endif
 	}
 
-	android_enable_function(dev, conf, "hid");
+	android_enable_function(dev, "hid");
 
 	mutex_unlock(&dev->mutex);
 
