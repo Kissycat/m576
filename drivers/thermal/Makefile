@@ -2,7 +2,7 @@
 # Makefile for sensor chip drivers.
 #
 
-obj-$(CONFIG_THERMAL)		+= thermal_sys.o
+obj-$(CONFIG_THERMAL)		+= thermal_sys.o meizu_ntc_thermal.o
 ifeq ($(CONFIG_SOC_EXYNOS7580),y)
 thermal_sys-y			+= exynos7580/thermal_core.o
 else

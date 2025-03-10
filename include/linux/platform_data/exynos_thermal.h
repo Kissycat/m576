@@ -22,6 +22,7 @@
 #ifndef _LINUX_EXYNOS_THERMAL_H
 #define _LINUX_EXYNOS_THERMAL_H
 #include <linux/cpu_cooling.h>
+#include <linux/power_mode.h>
 
 enum calibration_type {
 	TYPE_ONE_POINT_TRIMMING,
@@ -47,6 +48,7 @@ enum soc_type {
  */
 struct freq_clip_table {
 	unsigned int freq_clip_max;
+	unsigned int freq_clip_max_powerm[POWER_MODE_END];
 #ifdef CONFIG_ARM_EXYNOS_MP_CPUFREQ
 	unsigned int freq_clip_max_cluster0;
 #endif

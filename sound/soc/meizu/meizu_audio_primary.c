@@ -51,9 +51,7 @@
 
 //#define PERF_MODE
 
-#ifdef PERF_MODE
 #include <linux/perf_mode.h>
-#endif
 
 #define MCLK_FREQ  24000000
 
@@ -89,13 +87,11 @@ int meizu_call_notifier_call_chain(unsigned long val, void *v)
 }
 EXPORT_SYMBOL_GPL(meizu_call_notifier_call_chain);
 
-#ifdef PERF_MODE
 static inline void audio_pm_qos_request(void)
 {
 	request_perf_mode(PERF_MODE_NORMAL, PM_QOS_PERF_MODE, HMP_BOOST_SEMI, DEFAULT_BOOST_TIME_US, DEFAULT_BOOST_HMP_TIME_US);
 	usleep_range(8000, 10000);
 }
-#endif
 
 #ifdef CONFIG_SND_SOC_WM8998_CODEC_MASTER
 static int meizu_media_hw_params(struct snd_pcm_substream *substream,
@@ -362,9 +358,7 @@ static int meizu_media_be_startup(struct snd_pcm_substream *substream)
 	int ret;
 
 	// workaround: lock some resource to fixup pop noise when usb plugin
-#ifdef PERF_MODE	
 	audio_pm_qos_request();
-#endif
 
 	/* aif1 uses sysclk domain */
 	ret = snd_soc_dai_set_sysclk(codec_dai, ARIZONA_CLK_SYSCLK, 0, 0);
